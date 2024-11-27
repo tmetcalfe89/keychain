@@ -8,6 +8,7 @@ const getObj = () => ({
     c: "b.c",
   },
   c: ["a"],
+  z: { "a.b": "a.b!" },
 });
 
 test("It can find a property.", () => {
@@ -103,4 +104,14 @@ test("It throws if trying to remove froma a list that isn't a list", () => {
   assert.throws(() => {
     keychain.removeFromList("a", "a", obj);
   });
+});
+
+test("It can use invalid keys when they're in an array keychain.", () => {
+  const obj = getObj();
+  assert.equal(keychain.get(["z", "a.b"], obj), obj.z["a.b"]);
+});
+
+test("It can use invalid keys when surrounded by apostrophes in a string keychain.", () => {
+  const obj = getObj();
+  assert.equal(keychain.get("z.'a.b'", obj), obj.z["a.b"]);
 });

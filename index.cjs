@@ -1,6 +1,22 @@
+function parseString(input) {
+  const regex = /'([^']*)'|[^.]+/g;
+  const result = [];
+  let match;
+
+  while ((match = regex.exec(input)) !== null) {
+    if (match[1] !== undefined) {
+      result.push(match[1]);
+    } else {
+      result.push(match[0]);
+    }
+  }
+
+  return result;
+}
+
 function parseKeychain(kc) {
   if (typeof kc === "string") {
-    return kc.split(".");
+    return parseString(kc);
   }
   if (Array.isArray(kc)) {
     return kc;
