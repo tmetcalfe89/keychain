@@ -11,7 +11,7 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./module.js",
+      "import": "./index.mjs",
       "require": "./index.cjs"
     }
   }
