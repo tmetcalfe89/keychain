@@ -91,3 +91,16 @@ test("It throws if trying to add to a set that isn't a list.", () => {
     keychain.addToList("a", "a", obj);
   });
 });
+
+test("It can remove an entry from a list.", () => {
+  const obj = getObj();
+  keychain.removeFromList("c", "a", obj);
+  assert.deepEqual(obj.c, []);
+});
+
+test("It throws if trying to remove froma a list that isn't a list", () => {
+  const obj = getObj();
+  assert.throws(() => {
+    keychain.removeFromList("a", "a", obj);
+  });
+});

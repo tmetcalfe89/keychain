@@ -79,15 +79,28 @@ test("It can add an entry to a list.", () => {
   assert.deepEqual(obj.c, ["a", "d"]);
 });
 
-test("It can add an entry to a set, allowing dupes.", () => {
+test("It can add an entry to a list, allowing dupes.", () => {
   const obj = getObj();
   keychain.addToList("c", "a", obj);
   assert.deepEqual(obj.c, ["a", "a"]);
 });
 
-test("It throws if trying to add to a set that isn't a list.", () => {
+test("It throws if trying to add to a list that isn't a list.", () => {
   const obj = getObj();
   assert.throws(() => {
     keychain.addToList("a", "a", obj);
+  });
+});
+
+test("It can remove an entry from a list.", () => {
+  const obj = getObj();
+  keychain.removeFromList("c", "a", obj);
+  assert.deepEqual(obj.c, []);
+});
+
+test("It throws if trying to remove froma a list that isn't a list", () => {
+  const obj = getObj();
+  assert.throws(() => {
+    keychain.removeFromList("a", "a", obj);
   });
 });

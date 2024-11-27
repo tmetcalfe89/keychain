@@ -62,4 +62,17 @@ function addToList(kc, v, obj) {
   );
 }
 
-export { get, update, addToSet, addToList };
+function removeFromList(kc, v, obj) {
+  update(
+    kc,
+    (prev) => {
+      if (!Array.isArray(prev)) {
+        throw new Error("Attempted to remove a list entry from a non-list.");
+      }
+      return prev.filter((e) => e !== v);
+    },
+    obj
+  );
+}
+
+export { get, update, addToSet, addToList, removeFromList };
