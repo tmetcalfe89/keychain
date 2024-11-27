@@ -55,7 +55,7 @@ function update(kc, v, obj) {
 function addToSet(kc, v, obj) {
   update(
     kc,
-    (prev) => {
+    (prev = []) => {
       if (!Array.isArray(prev)) {
         throw new Error("Attempted to add a list entry to a non-list.");
       }
