@@ -1,5 +1,5 @@
 {
-  "name": "keychain",
+  "name": "@tmetcalfe89/keychain",
   "version": "1.0.0",
   "scripts": {
     "test": "node --test --experimental-test-coverage --test-reporter=spec"
