@@ -68,7 +68,7 @@ function addToSet(kc, v, obj) {
 function addToList(kc, v, obj) {
   update(
     kc,
-    (prev) => {
+    (prev = []) => {
       if (!Array.isArray(prev)) {
         throw new Error("Attempted to add a list entry to a non-list.");
       }
@@ -81,7 +81,7 @@ function addToList(kc, v, obj) {
 function removeFromList(kc, v, obj) {
   update(
     kc,
-    (prev) => {
+    (prev = []) => {
       if (!Array.isArray(prev)) {
         throw new Error("Attempted to remove a list entry from a non-list.");
       }

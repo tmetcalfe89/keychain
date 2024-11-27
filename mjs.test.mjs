@@ -115,3 +115,9 @@ test("It can use invalid keys when surrounded by apostrophes in a string keychai
   const obj = getObj();
   assert.equal(keychain.get("z.'a.b'", obj), obj.z["a.b"]);
 });
+
+test("It can add a new list if the list didn't exist before.", () => {
+  const obj = getObj();
+  keychain.addToList("f", "f0", obj);
+  assert.deepEqual(obj.f, ["f0"]);
+});
