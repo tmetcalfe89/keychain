@@ -14,7 +14,7 @@ function parseString(input) {
   return result;
 }
 
-function parseKeychain(kc) {
+export function parseKeychain(kc) {
   if (typeof kc === "string") {
     return parseString(kc);
   }
