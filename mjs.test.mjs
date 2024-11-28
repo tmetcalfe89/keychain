@@ -49,6 +49,12 @@ test("It can create a new nested property on update.", () => {
   assert.equal(obj.b.d, "b.d");
 });
 
+test("It can create a new deeply nested property on update.", () => {
+  const obj = getObj();
+  keychain.update("b.d.a", "b.d", obj);
+  assert.equal(obj.b.d.a, "b.d");
+});
+
 test("It can add an entry to a set.", () => {
   const obj = getObj();
   keychain.addToSet("c", "d", obj);

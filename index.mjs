@@ -48,7 +48,12 @@ function get(kc, obj, create = false) {
 function update(kc, v, obj) {
   const chain = parseKeychain(kc);
   const targetKc = chain.slice(0, -1);
-  const target = get(targetKc, obj, true);
+  let target = get(targetKc, obj, true);
+  if (!target) {
+    get(targetKc.slice(0, -1), obj)[targetKc[targetKc.length - 1]] =
+      typeof targetKc[targetKc.length - 1] === "number" ? [] : {};
+    target = get(targetKc, obj, true);
+  }
   target[chain[chain.length - 1]] =
     typeof v === "function" ? v(target[chain[chain.length - 1]]) : v;
 }
