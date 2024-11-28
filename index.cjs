@@ -14,7 +14,7 @@ function parseString(input) {
   return result;
 }
 
-export function parseKeychain(kc) {
+function parseKeychain(kc) {
   if (typeof kc === "string") {
     return parseString(kc);
   }
@@ -103,4 +103,5 @@ module.exports = {
   addToSet,
   addToList,
   removeFromList,
+  parseKeychain,
 };
