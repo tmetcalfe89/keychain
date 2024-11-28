@@ -49,12 +49,6 @@ test("It can create a new nested property on update.", () => {
   assert.equal(obj.b.d, "b.d");
 });
 
-test("It can create a new nested property on get.", () => {
-  const obj = getObj();
-  keychain.get("b.d", obj, true);
-  assert.deepEqual(obj.b.d, {});
-});
-
 test("It can add an entry to a set.", () => {
   const obj = getObj();
   keychain.addToSet("c", "d", obj);
@@ -120,4 +114,28 @@ test("It can add a new list if the list didn't exist before.", () => {
   const obj = getObj();
   keychain.addToList("f", "f0", obj);
   assert.deepEqual(obj.f, ["f0"]);
+});
+
+test("It creates an empty object if it hits an element that doesn't exist in an array chain with a string key.", () => {
+  const obj = getObj();
+  keychain.get(["f", "1"], obj, true);
+  assert.deepEqual(obj.f, {});
+});
+
+test("It creates an empty array if it hits an element that doesn't exist in an array chain with a number key.", () => {
+  const obj = getObj();
+  keychain.get(["f", 1], obj, true);
+  assert.deepEqual(obj.f, []);
+});
+
+test("It creates an empty object if it hits an element that doesn't exist in a string chain with a string key.", () => {
+  const obj = getObj();
+  keychain.get("f.'1'", obj, true);
+  assert.deepEqual(obj.f, {});
+});
+
+test("It creates an empty array if it hits an element that doesn't exist in a string chain with a number key.", () => {
+  const obj = getObj();
+  keychain.get("f.1", obj, true);
+  assert.deepEqual(obj.f, []);
 });

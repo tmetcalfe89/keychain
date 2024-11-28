@@ -7,7 +7,7 @@ function parseString(input) {
     if (match[1] !== undefined) {
       result.push(match[1]);
     } else {
-      result.push(match[0]);
+      result.push(isNaN(match[0]) ? match[0] : +match[0]);
     }
   }
 
@@ -30,11 +30,12 @@ function get(kc, obj, create = false) {
   const chain = parseKeychain(kc);
 
   let pointer = obj;
-  for (const ke of chain) {
+  for (const ki in chain) {
+    const ke = chain[ki];
     const nextPointer = pointer[ke];
     if (nextPointer === undefined || nextPointer === null) {
-      if (create) {
-        pointer[ke] = isNaN(ke) ? {} : [];
+      if (create && ki < chain.length - 1) {
+        pointer[ke] = typeof chain[+ki + 1] === "number" ? [] : {};
       } else {
         return null;
       }
@@ -91,4 +92,10 @@ function removeFromList(kc, v, obj) {
   );
 }
 
-module.exports = { get, update, addToSet, addToList, removeFromList };
+module.exports = {
+  get,
+  update,
+  addToSet,
+  addToList,
+  removeFromList,
+};
