@@ -14,6 +14,12 @@ function parseString(input) {
   return result;
 }
 
+export function homogenizeKeychain(kc) {
+  return parseKeychain(kc)
+    .map((k) => (typeof k === "string" ? `'${k}'` : `${k}`))
+    .join(".");
+}
+
 export function parseKeychain(kc) {
   if (typeof kc === "string") {
     return parseString(kc);

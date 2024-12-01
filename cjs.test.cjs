@@ -145,3 +145,7 @@ test("It creates an empty array if it hits an element that doesn't exist in a st
   keychain.get("f.1", obj, true);
   assert.deepEqual(obj.f, []);
 });
+
+test("It can homogenize a keychain.", () => {
+  assert.equal(keychain.homogenizeKeychain("a.'b.c'.1"), "'a'.'b.c'.1");
+});
