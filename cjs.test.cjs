@@ -147,5 +147,5 @@ test("It creates an empty array if it hits an element that doesn't exist in a st
 });
 
 test("It can homogenize a keychain.", () => {
-  assert.equal(keychain.homogenizeKeychain("a.'b.c'.1"), "'a'.'b.c'.1");
+  assert.equal(keychain.homogenizeKeychain("a.'b.c'.1.'z'"), "'a'.'b.c'.1.'z'");
 });
